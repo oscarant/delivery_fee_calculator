@@ -1,4 +1,9 @@
-
+# Delivery Fee Calculator
+This is a simple delivery fee calculator that calculates the delivery fee based on the distance, number of items, time, value, of the package.
+Link to repository:
+* https://jobs.smartrecruiters.com/Wolt/743999878752853-software-engineering-intern-summer-2023?lid=63c5855e818b69630b4c7d55
+* https://github.com/woltapp/engineering-summer-intern-2023
+**DELETE THIS LATER** 
 ## Development
 
 I decided to use pipenv because I find the installation of dependencies and its 
