@@ -9,7 +9,9 @@ Missing things to do:
 - Add logging (maybe)
 - Add object oriented design
 - Add more comments
+- Remove wsgi.py
 """
+
 
 def init_app(config_file_path: str = "settings.py", **config: Any) -> Flask:
     """Initialize the core application."""
