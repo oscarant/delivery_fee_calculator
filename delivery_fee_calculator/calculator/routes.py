@@ -1,5 +1,5 @@
-from flask import Blueprint, request, jsonify
-from pydantic import ValidationError
+from flask import Blueprint, jsonify, Response
+from flask_pydantic import validate
 
 from delivery_fee_calculator.calculator.handlers import DeliveryFeeCalculatorHandler
 from delivery_fee_calculator.calculator.schemas import Order
@@ -10,10 +10,7 @@ ENDPOINT_FORMAT = "/calculator/delivery_fee"
 
 
 @calculator_bp.route(ENDPOINT_FORMAT, methods=["POST"])
-def calculate_fee():
-    try:
-        order = Order(**request.json)
-    except ValidationError as e:
-        return jsonify({"validation error": e.errors()}), 400
-    delivery_fee = DeliveryFeeCalculatorHandler().handle(order=order)
+@validate()
+def calculate_fee(body: Order) -> Response:
+    delivery_fee = DeliveryFeeCalculatorHandler().handle(order=body)
     return jsonify({"delivery_fee": delivery_fee})
