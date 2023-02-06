@@ -4,11 +4,6 @@ from flask_cors import CORS
 
 from delivery_fee_calculator.exceptions import RequestValidationError
 
-"""
-Missing things to do:
-- Add tests
-"""
-
 
 def request_exception_handler(exc: RequestValidationError) -> Response:
     return make_response(jsonify({"validation_error": exc.errors()}), 400)
