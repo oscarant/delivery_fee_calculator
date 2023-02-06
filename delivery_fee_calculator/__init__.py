@@ -7,7 +7,6 @@ from delivery_fee_calculator.exceptions import RequestValidationError
 """
 Missing things to do:
 - Add tests
-- Add error handling
 """
 
 

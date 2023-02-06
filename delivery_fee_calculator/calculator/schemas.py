@@ -35,6 +35,7 @@ class Order(BaseModel):
     @validator("time")
     def time_must_be_valid(cls, v: str):
         try:
+            # Try to parse the time string
             datetime.strptime(v, TIME_FORMAT)
         except ValueError:
             raise ValueError("time must be valid")
