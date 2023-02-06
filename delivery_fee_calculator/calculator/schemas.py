@@ -11,6 +11,7 @@ class Order(BaseModel):
     # ... is used to indicate that the field is required
     # The description is used to generate the API documentation
     # The ge validator is used to validate that the value is greater than or equal to the given value
+    # The gt validator is used to validate that the value is greater than the given value
     cart_value: int = Field(
         ...,
         ge=0,
@@ -18,12 +19,12 @@ class Order(BaseModel):
     )
     delivery_distance: int = Field(
         ...,
-        ge=0,
+        gt=0,
         description="The distance to the delivery address in meters"
     )
     number_of_items: int = Field(
         ...,
-        ge=0,
+        gt=0,
         description="The number of items in the cart"
     )
     time: str = Field(

@@ -26,9 +26,11 @@ class DeliveryFeeCalculatorHandler:
         :param delivery_fee: The current delivery fee
         :return: The delivery fee with the delivery distance surcharge added
         """
-        delivery_fee = delivery_fee + 2000
+        # Base delivery fee is 2€
+        delivery_fee = delivery_fee + 200
         if order.delivery_distance > 1000:
-            return delivery_fee + ceil((order.delivery_distance - 1000) / 500) * 1000
+            # The delivery distance surcharge is 1€ per 500m after the first 1km
+            return delivery_fee + ceil((order.delivery_distance - 1000) / 500) * 100
         else:
             return delivery_fee
 
@@ -44,7 +46,7 @@ class DeliveryFeeCalculatorHandler:
         if order.number_of_items > 4:
             delivery_fee = delivery_fee + (order.number_of_items - 4) * 50
             if order.number_of_items > 12:
-                delivery_fee = delivery_fee + 1200
+                delivery_fee = delivery_fee + 120
         return delivery_fee
 
     def _max_fee(self, delivery_fee: int) -> int:
@@ -53,8 +55,8 @@ class DeliveryFeeCalculatorHandler:
         :param delivery_fee: The current delivery fee
         :return: The delivery fee capped at 15€
         """
-        if delivery_fee > 15000:
-            return 15000
+        if delivery_fee > 1500:
+            return 1500
         else:
             return delivery_fee
 
@@ -64,7 +66,7 @@ class DeliveryFeeCalculatorHandler:
         :param order: Received order
         :return: True if the delivery is free, False otherwise
         """
-        if order.cart_value > 100000:
+        if order.cart_value >= 10000:
             return True
         else:
             return False
