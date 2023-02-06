@@ -8,6 +8,7 @@ flask = "*"
 flask-cors = "*"
 flask-pydantic = "*"
 pydantic = "*"
+prettyconf = "*"
 
 [dev-packages]
 
