@@ -1,13 +1,12 @@
 # Delivery Fee Calculator
-This is a simple delivery fee calculator that calculates the delivery fee based on the distance, number of items, time, value, of the package.
-Link to repository:
-* https://jobs.smartrecruiters.com/Wolt/743999878752853-software-engineering-intern-summer-2023?lid=63c5855e818b69630b4c7d55
-* https://github.com/woltapp/engineering-summer-intern-2023
-**DELETE THIS LATER** 
+This is a simple delivery fee calculator that calculates the delivery fee based on many
+variables
+
 ## Development
 
 I decided to use pipenv because I find the installation of dependencies and its 
-app setup very easy and convenient.
+app setup very easy and convenient. I used python 3.10.4 for this project, 
+but theoretically it should work with any python 3.7+ version.
 
 ### Setup
 
@@ -39,13 +38,29 @@ Activate the pipenv shell and run the python file.
 pipenv shell
 python runserver.py
 ```
+After this moment you can send requests to the app.
 
-#### Running directly the app
+### Using the app
+Usable endpoints:
+* ```/v1/calculator/delivery_fee``` - POST
+* ```/-/ping``` - GET
 
-or as an alternative, you can try this:
+For default when you run the app it will be listening on port ```8080``` and the 
+host will be ```127.0.0.1```.
+
+So the full URL will be ```http://127.0.0.1:8080/v1/calculator/delivery_fee```.
+
+### Testing
+If you are not in the virtual environment, activate it:
 
 ```shell
-pipenv run python runserver.py
+pipenv shell
+```
+
+Run the tests:
+
+```shell
+python -m unittest discover
 ```
 
 ## Author
