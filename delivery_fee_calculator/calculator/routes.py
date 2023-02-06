@@ -6,7 +6,7 @@ from delivery_fee_calculator.calculator.schemas import Order
 
 calculator_bp = Blueprint("calculator", __name__, url_prefix="/v1")
 
-ENDPOINT_FORMAT = "/calculator/fee"
+ENDPOINT_FORMAT = "/calculator/delivery_fee"
 
 
 @calculator_bp.route(ENDPOINT_FORMAT, methods=["POST"])

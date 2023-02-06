@@ -2,6 +2,8 @@ from datetime import datetime
 
 from pydantic import BaseModel, validator
 
+TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
+
 
 class Order(BaseModel):
     cart_value: int
@@ -29,9 +31,9 @@ class Order(BaseModel):
         return v
 
     @validator("time")
-    def time_must_be_valid(cls, v):
+    def time_must_be_valid(cls, v: str):
         try:
-            datetime.fromisoformat(v)
+            datetime.strptime(v, TIME_FORMAT)
         except ValueError:
             raise ValueError("time must be valid")
         return v

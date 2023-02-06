@@ -1,9 +1,10 @@
 from math import ceil
-import datetime
-from schemas import Order
+from datetime import datetime
+from .schemas import Order, TIME_FORMAT
 
 
 class DeliveryFeeCalculatorHandler:
+
     def _small_order_fee(self, order: Order, delivery_fee: int) -> int:
         if order.cart_value < 1000:
             return delivery_fee + (1000 - order.cart_value)
@@ -30,14 +31,14 @@ class DeliveryFeeCalculatorHandler:
         else:
             return delivery_fee
 
-    def _free_delivery(self, order: Order, delivery_fee: int) -> int:
+    def _free_delivery(self, order: Order) -> bool:
         if order.cart_value > 100000:
-            return 0
+            return True
         else:
-            return delivery_fee
+            return False
 
     def _friday_rush_fee(self, order: Order, delivery_fee: int) -> int:
-        time = datetime.datetime.fromisoformat(order.time)
+        time = datetime.strptime(order.time, TIME_FORMAT)
         # Check if it's Friday and between 15:00 and 19:00
         if time.weekday() == 4 and 15 <= time.hour <= 19:
             return round(delivery_fee * 1.2)
@@ -46,7 +47,7 @@ class DeliveryFeeCalculatorHandler:
 
     def handle(self, order: Order) -> int:
         delivery_fee = 0
-        if self._free_delivery(order, delivery_fee) == 0:
+        if self._free_delivery(order):
             return delivery_fee
         delivery_fee = self._small_order_fee(order, delivery_fee)
         delivery_fee = self._distance_fee(order, delivery_fee)
