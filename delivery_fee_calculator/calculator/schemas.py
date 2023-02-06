@@ -2,6 +2,7 @@ from datetime import datetime
 
 from pydantic import BaseModel, validator
 
+# Default time format for the API
 TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
 
 
