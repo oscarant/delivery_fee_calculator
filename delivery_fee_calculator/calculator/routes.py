@@ -14,6 +14,6 @@ def calculate_fee():
     try:
         order = Order(**request.json)
     except ValidationError as e:
-        return jsonify(e.errors()), 400
+        return jsonify({"validation error": e.errors()}), 400
     delivery_fee = DeliveryFeeCalculatorHandler().handle(order=order)
     return jsonify({"delivery_fee": delivery_fee})

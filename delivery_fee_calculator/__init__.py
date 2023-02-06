@@ -4,12 +4,8 @@ from flask_cors import CORS
 
 """
 Missing things to do:
-- Add pythonic validation
 - Add tests
-- Add logging (maybe)
-- Add object oriented design
 - Add more comments
-- Remove wsgi.py
 """
 
 
